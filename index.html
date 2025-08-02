@@ -1,97 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Red Lucky 777</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at center, #1b1b1b 0%, #000000 100%);
       font-family: Arial, sans-serif;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    h1 {
-      color: #ff2e63;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-
-    .slot-machine {
-      background: #222;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #ff2e63;
-      display: flex;
-      gap: 20px;
-      font-size: 2em;
-    }
-
-    .reel {
-      width: 80px;
-      height: 80px;
-      background: #000;
-      border: 2px solid #ff2e63;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    button {
-      margin-top: 30px;
-      padding: 12px 25px;
-      font-size: 1em;
-      background-color: #ff2e63;
-      border: none;
-      border-radius: 10px;
+      background: linear-gradient(to bottom, #ff0033, #990000);
       color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px auto;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+    button {
+      background: gold;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
     }
-
     button:hover {
-      background-color: #e11d4a;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 10px;
-      font-size: 0.9em;
-      color: #aaa;
+      background: #ffd700;
     }
   </style>
 </head>
 <body>
+  <h1>🎰 Red Lucky 777 🎰</h1>
+  <div class="card">
+    <h2>💰 Balance: Rs. <span id="balance">0</span></h2>
+    <button onclick="claimBonus()">🎁 Claim Bonus (1 every 24h)</button>
+    <p id="bonus-status"></p>
+  </div>  <div class="card">
+    <button onclick="withdraw()">🏦 Withdraw</button>
+    <button onclick="deposit()">💳 Deposit</button>
+  </div>  <div class="card">
+    <button onclick="contactSupport()">📞 Customer Service</button>
+  </div>  <script>
+    let balance = 0;
+    let lastClaim = localStorage.getItem('lastClaim') || 0;
 
-  <h1>Red Lucky 777</h1>
-
-  <div class="slot-machine">
-    <div class="reel" id="reel1">🍒</div>
-    <div class="reel" id="reel2">🍋</div>
-    <div class="reel" id="reel3">🍇</div>
-  </div>
-
-  <button onclick="spin()">🎰 Spin</button>
-
-  <footer>Powered by Red Lucky 777 Bot</footer>
-
-  <script>
-    const symbols = ["🍒", "🍋", "🍇", "7️⃣", "🔔", "🍉"];
-
-    function spin() {
-      document.getElementById("reel1").textContent = symbols[Math.floor(Math.random() * symbols.length)];
-      document.getElementById("reel2").textContent = symbols[Math.floor(Math.random() * symbols.length)];
-      document.getElementById("reel3").textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    function updateBalanceDisplay() {
+      document.getElementById('balance').innerText = balance.toFixed(2);
     }
-  </script>
 
-</body>
+    function claimBonus() {
+      const now = Date.now();
+      if (now - lastClaim >= 24 * 60 * 60 * 1000) {
+        balance += 1.00;
+        lastClaim = now;
+        localStorage.setItem('lastClaim', now);
+        updateBalanceDisplay();
+        document.getElementById('bonus-status').innerText = "🎉 Bonus claimed! Come back in 24 hours.";
+      } else {
+        const timeLeft = 24 - Math.floor((now - lastClaim) / (60 * 60 * 1000));
+        document.getElementById('bonus-status').innerText = `⏳ Bonus already claimed. Come back in ${timeLeft} hour(s).`;
+      }
+    }
+
+    function withdraw() {
+      alert("To withdraw, please contact customer support with your UID and amount.");
+    }
+
+    function deposit() {
+      alert("To deposit, send payment to our Easypaisa/JazzCash number and send a screenshot to support.");
+    }
+
+    function contactSupport() {
+      window.open("https://wa.me/923363679955", "_blank");
+    }
+
+    updateBalanceDisplay();
+  </script></body>
 </html>
