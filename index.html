@@ -1,83 +1,72 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Red Lucky 777</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #ff0033, #990000);
-      color: white;
+      background: linear-gradient(to bottom right, #ff4e50, #f9d423);
+      color: #fff;
       text-align: center;
       padding: 20px;
     }
-    .card {
-      background: rgba(0, 0, 0, 0.4);
+    .section {
+      margin: 30px auto;
       padding: 20px;
-      border-radius: 12px;
-      margin: 15px auto;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
       max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
     }
-    button {
-      background: gold;
-      border: none;
+    h1 {
+      font-size: 2.5em;
+    }
+    a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 10px;
       padding: 10px 20px;
-      margin: 10px;
-      border-radius: 8px;
+      background-color: #00c853;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
     }
-    button:hover {
-      background: #ffd700;
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <h1>🎰 Red Lucky 777 🎰</h1>
-  <div class="card">
-    <h2>💰 Balance: Rs. <span id="balance">0</span></h2>
-    <button onclick="claimBonus()">🎁 Claim Bonus (1 every 24h)</button>
-    <p id="bonus-status"></p>
-  </div>  <div class="card">
-    <button onclick="withdraw()">🏦 Withdraw</button>
-    <button onclick="deposit()">💳 Deposit</button>
-  </div>  <div class="card">
-    <button onclick="contactSupport()">📞 Customer Service</button>
-  </div>  <script>
-    let balance = 0;
-    let lastClaim = localStorage.getItem('lastClaim') || 0;
-
-    function updateBalanceDisplay() {
-      document.getElementById('balance').innerText = balance.toFixed(2);
-    }
-
-    function claimBonus() {
-      const now = Date.now();
-      if (now - lastClaim >= 24 * 60 * 60 * 1000) {
-        balance += 1.00;
-        lastClaim = now;
-        localStorage.setItem('lastClaim', now);
-        updateBalanceDisplay();
-        document.getElementById('bonus-status').innerText = "🎉 Bonus claimed! Come back in 24 hours.";
-      } else {
-        const timeLeft = 24 - Math.floor((now - lastClaim) / (60 * 60 * 1000));
-        document.getElementById('bonus-status').innerText = `⏳ Bonus already claimed. Come back in ${timeLeft} hour(s).`;
-      }
-    }
-
-    function withdraw() {
-      alert("To withdraw, please contact customer support with your UID and amount.");
-    }
-
-    function deposit() {
-      alert("To deposit, send payment to our Easypaisa/JazzCash number and send a screenshot to support.");
-    }
-
-    function contactSupport() {
-      window.open("https://wa.me/923363679955", "_blank");
-    }
-
-    updateBalanceDisplay();
-  </script></body>
+  <h1>🎰 Red Lucky 777 🎰</h1>  <div class="section">
+    <p>💰 Balance: Rs. 0</p>
+    <p>🎁 Bonus: Claim Rs. 1 every 24 hours</p>
+    <a class="button" href="#">Claim Bonus</a>
+  </div>  <div class="section">
+    <p>💳 Deposit your balance</p>
+    <a class="button" href="#">Deposit Now</a>
+  </div>  <div class="section">
+    <p>🏦 Withdraw your winnings</p>
+    <a class="button" href="#">Withdraw Now</a>
+  </div>  <div class="section">
+    <p>💬 Customer Service: <a href="https://t.me/asifpin" target="_blank">@asifpin</a></p>
+  </div>  <div class="section">
+    <p>🤝 Referral Program</p>
+    <p>Invite your friends and earn automatic rewards directly to your balance!</p>
+    <ul>
+      <li>🎉 Level 1: Rs. 10</li>
+      <li>👥 Level 2: Rs. 3</li>
+      <li>👥 Level 3: Rs. 2</li>
+      <li>👥 Level 4: Rs. 1</li>
+    </ul>
+    <a class="button" href="#">Share Referral Link</a>
+  </div>
+</body>
 </html>
