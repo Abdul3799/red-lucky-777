@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Red Lucky 777</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #1b1b1b 0%, #000000 100%);
+      font-family: Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #ff2e63;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .slot-machine {
+      background: #222;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff2e63;
+      display: flex;
+      gap: 20px;
+      font-size: 2em;
+    }
+
+    .reel {
+      width: 80px;
+      height: 80px;
+      background: #000;
+      border: 2px solid #ff2e63;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 1em;
+      background-color: #ff2e63;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e11d4a;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Red Lucky 777</h1>
+
+  <div class="slot-machine">
+    <div class="reel" id="reel1">🍒</div>
+    <div class="reel" id="reel2">🍋</div>
+    <div class="reel" id="reel3">🍇</div>
+  </div>
+
+  <button onclick="spin()">🎰 Spin</button>
+
+  <footer>Powered by Red Lucky 777 Bot</footer>
+
+  <script>
+    const symbols = ["🍒", "🍋", "🍇", "7️⃣", "🔔", "🍉"];
+
+    function spin() {
+      document.getElementById("reel1").textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      document.getElementById("reel2").textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      document.getElementById("reel3").textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    }
+  </script>
+
+</body>
+</html>
