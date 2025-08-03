@@ -1,75 +1,50 @@
-<!DOCTYPE html><html lang="en">
+<!-- index.html --><!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Red Lucky 777</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #87CEFA, #E0F7FA); /* Sky blue gradient */
-      color: #333;
-    }
-    .container {
-      max-width: 500px;
-      margin: auto;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-top: 40px;
-    }
-    h1, h2 {
-      text-align: center;
-      color: #D32F2F;
-    }
-    button, a.button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #0288D1;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-align: center;
-      margin-top: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .info-box {
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>🎰 Red Lucky 777</h1>
-    <div class="info-box">
-      <p>💰 Balance: Rs. 0</p>
-      <p>🎁 Bonus: Claim Rs. 1 every 24 hours</p>
-      <button>Claim Bonus</button>
-    </div>
-    <div class="info-box">
-      <h2>💵 Deposit</h2>
-      <button>Deposit Now</button>
-    </div>
-    <div class="info-box">
-      <h2>🏧 Withdraw</h2>
-      <button>Withdraw Now</button>
-    </div>
-    <div class="info-box">
-      <h2>📢 Referral Program</h2>
-      <p>Level 1: Rs. 10<br>Level 2: Rs. 3<br>Level 3: Rs. 2<br>Level 4: Rs. 1</p>
-      <button>Share Referral Link</button>
-    </div>
-    <div class="info-box">
-      <h2>💬 Customer Service</h2>
-      <a href="https://t.me/asifpin" target="_blank" class="button">@asifpin</a>
-    </div>
-  </div>
-</body>
+  <div class="app-container">
+    <h1 class="logo">Red Lucky 777</h1>
+    <div class="balance-section">
+      <p>Balance: <span id="balance">Red 0.1</span></p>
+    </div><div class="wheel-section">
+  <label for="bet">Select Bet (Token Red):</label>
+  <select id="bet">
+    <option>0.1</option>
+    <option>0.2</option>
+    <option>0.3</option>
+    <option>0.5</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>10</option>
+    <option>15</option>
+    <option>20</option>
+    <option>30</option>
+    <option>40</option>
+    <option>50</option>
+    <option>80</option>
+    <option>100</option>
+    <option>200</option>
+    <option>500</option>
+  </select>
+  <button onclick="spin()">Spin</button>
+</div>
+
+<div id="result"></div>
+
+<div class="actions">
+  <button onclick="deposit()">Deposit</button>
+  <button onclick="withdraw()">Withdraw</button>
+  <button onclick="claimBonus()">Claim Bonus (24hr)</button>
+  <button onclick="refer()">Referral</button>
+  <a href="https://t.me/asifpin" class="support">Customer Service</a>
+</div>
+
+  </div>  <script src="script.js"></script></body>
 </html>
