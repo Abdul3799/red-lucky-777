@@ -1,51 +1,82 @@
+/* Sky-to-Red Gradient */
 body {
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #87CEFA, #ffe6e6); /* Sky blue to light red */
-  color: #333;
+  background: linear-gradient(to bottom right, #87CEEB, #FF0000);
+  color: #fff;
   text-align: center;
-  padding: 20px;
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 2rem;
-  color: #d90000;
-  margin-bottom: 10px;
+/* Loading Spinner */
+#loading {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.spinner {
+  width: 60px; height: 60px;
+  border: 8px solid #ddd;
+  border-top: 8px solid red;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
 }
 
-button {
-  padding: 10px 20px;
-  margin: 10px 5px;
-  font-size: 1rem;
-  border: none;
-  background: #d90000;
-  color: white;
+/* Main Sections */
+.section {
+  margin: 20px auto;
+  padding: 15px;
+  max-width: 400px;
+  background: rgba(0,0,0,0.3);
   border-radius: 10px;
+}
+
+/* Fruit Animation */
+.fruits {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+.fruit {
+  font-size: 2rem;
+  animation: bounce 1s infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-10px); }
+}
+
+/* Buttons */
+button, .button {
+  padding: 10px 20px;
+  margin: 8px 4px;
+  background: #d90000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
   transition: background 0.3s;
 }
-
-button:hover {
+button:hover, .button:hover {
   background: #a30000;
 }
 
-.fruit {
-  font-size: 2rem;
-  animation: moveFruit 2s infinite;
-}
-
-@keyframes moveFruit {
-  0% { transform: translateX(0px); }
-  50% { transform: translateX(10px); }
-  100% { transform: translateX(0px); }
-}
-
+/* Balance & Timer */
 #balance {
-  font-weight: bold;
   font-size: 1.2rem;
-  color: green;
+  color: #00ff00;
 }
-
 #claimTimer {
-  color: #555;
   font-size: 0.9rem;
+  color: #eee;
 }
