@@ -1,24 +1,98 @@
-// script.js
+// Telegram WebApp integration
+const tg = window.Telegram.WebApp;
+const user = tg.initDataUnsafe?.user;
 
-// Telegram WebApp integration const tg = window.Telegram.WebApp; const user = tg.initDataUnsafe?.user;
+// LocalStorage keys
+const BAL = 'rl_balance';
+const SIGN = 'rl_signup';
+const LAST = 'rl_last_claim';
 
-// Local storage keys const STORAGE_BALANCE = 'rl_balance'; const STORAGE_SIGNUP = 'rl_signup_bonus'; const STORAGE_LAST_CLAIM = 'rl_last_claim';
+// Load or initialize
+let balance = parseFloat(localStorage.getItem(BAL)) || 0;
+let signed = localStorage.getItem(SIGN) === 'true';
 
-// Initialize balance and signup bonus let balance = parseFloat(localStorage.getItem(STORAGE_BALANCE)) || 0; let signupDone = localStorage.getItem(STORAGE_SIGNUP) === 'true';
+// Give signup bonus of Red 1
+function handleSignup() {
+  if (!signed && user) {
+    balance += 1;
+    localStorage.setItem(BAL, balance.toFixed(2));
+    localStorage.setItem(SIGN, 'true');
+    signed = true;
+    alert(`🎉 Hi ${user.first_name}, you got 1 Red bonus!`);
+  }
+}
 
-// Signup bonus: free Red 1 upon first Telegram connect function handleSignupBonus() { if (!signupDone && user) { balance += 1; localStorage.setItem(STORAGE_BALANCE, balance.toFixed(2)); localStorage.setItem(STORAGE_SIGNUP, 'true'); signupDone = true; alert(🎉 Welcome ${user.first_name}! You received 1 Red signup bonus.); } }
+// Update UI
+function updateUI() {
+  document.getElementById('balance').innerText = balance.toFixed(2) + ' Red';
+  checkBonusTimer();
+}
 
-// Update display function updateUI() { document.getElementById('balance').innerText = balance.toFixed(2) + ' Red'; checkDailyBonusTimer(); }
+// Spin logic: bet 0.1 guaranteed X2; others 50% X2
+function spin() {
+  const bet = parseFloat(document.getElementById('bet').value);
+  if (bet > balance) return alert('⚠️ Not enough balance');
+  balance -= bet;
+  let win = 0;
+  if (bet === 0.1) {
+    win = bet * 2;
+    alert(`🥳 Double win! +${win} Red`);
+  } else {
+    if (Math.random() < 0.5) {
+      win = bet * 2;
+      alert(`🎉 You win ${win} Red`);
+    } else {
+      alert('😢 You lost');
+    }
+  }
+  balance += win;
+  localStorage.setItem(BAL, balance.toFixed(2));
+  updateUI();
+  animateFruits();
+}
 
-// Spin logic: any bet 0.1 always X2 function spin() { const bet = parseFloat(document.getElementById('bet').value); if (bet > balance) { alert('⚠️ Not enough balance.'); return; } balance -= bet; let win = 0; if (bet === 0.1) { win = bet * 2; alert(🥳 Double win! You won ${win.toFixed(2)} Red); } else { // Other bets: 50% chance if (Math.random() < 0.5) { win = bet * 2; alert(🎉 You won ${win.toFixed(2)} Red); } else { alert('😢 You lost. Better luck next time!'); } } balance += win; localStorage.setItem(STORAGE_BALANCE, balance.toFixed(2)); updateUI(); animateFruits(); }
+// Daily bonus claim of 0.1 Red
+const BONUS = 0.1;
+function claimBonus() {
+  const now = Date.now();
+  const last = parseInt(localStorage.getItem(LAST)) || 0;
+  if (now - last < 24*60*60*1000) return alert('⏳ Already claimed');
+  balance += BONUS;
+  localStorage.setItem(BAL, balance.toFixed(2));
+  localStorage.setItem(LAST, now);
+  alert(`🎁 Claimed ${BONUS} Red`);
+  updateUI();
+}
 
-// Daily bonus: Red 0.1 every 24h const DAILY_BONUS = 0.1; function claimDailyBonus() { const now = Date.now(); const last = parseInt(localStorage.getItem(STORAGE_LAST_CLAIM)) || 0; if (now - last < 246060*1000) { alert('⏳ Bonus already claimed. Come back later.'); return; } balance += DAILY_BONUS; localStorage.setItem(STORAGE_BALANCE, balance.toFixed(2)); localStorage.setItem(STORAGE_LAST_CLAIM, now); alert(🎁 You claimed daily bonus ${DAILY_BONUS} Red); updateUI(); }
+// Show timer until next bonus
+function checkBonusTimer() {
+  const now = Date.now();
+  const last = parseInt(localStorage.getItem(LAST)) || 0;
+  const rem = 24*60*60*1000 - (now - last);
+  const el = document.getElementById('claimTimer');
+  if (rem > 0) {
+    const h = Math.floor(rem/3600000);
+    const m = Math.floor((rem%3600000)/60000);
+    el.innerText = `Next bonus in ${h}h ${m}m`;
+  } else {
+    el.innerText = 'Daily bonus available!';
+  }
+}
 
-// Timer display function checkDailyBonusTimer() { const now = Date.now(); const last = parseInt(localStorage.getItem(STORAGE_LAST_CLAIM)) || 0; const rem = 2460601000 - (now - last); const timerEl = document.getElementById('claimTimer'); if (rem > 0) { const hrs = Math.floor(rem/(60601000)); const mins = Math.floor((rem%(60601000))/(601000)); timerEl.innerText = Next bonus in ${hrs}h ${mins}m; } else { timerEl.innerText = 'Daily bonus available!'; } }
+// Animate fruits
+function animateFruits() {
+  document.querySelectorAll('.fruit').forEach(f => {
+    f.classList.add('bounce');
+    setTimeout(()=>f.classList.remove('bounce'), 1000);
+  });
+}
 
-// Fruit animation function animateFruits() { const fruits = document.querySelectorAll('.fruit'); fruits.forEach(f => { f.classList.add('animate'); setTimeout(() => f.classList.remove('animate'), 1000); }); }
+// On load
+window.onload = () => {
+  handleSignup();
+  updateUI();
+};
 
-// On load window.onload = () => { handleSignupBonus(); updateUI(); };
-
-// Expose functions to global window.spin = spin; window.claimBonus = claimDailyBonus;
-
+// Expose
+window.spin = spin;
+window.claimBonus = claimBonus;
