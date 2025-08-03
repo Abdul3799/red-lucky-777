@@ -5,72 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Red Lucky 777</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: linear-gradient(to bottom, #87CEEB, #ffdddd);
-      overflow: hidden;
-    }
-
-    #loading {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .spinner {
-      width: 60px;
-      height: 60px;
-      border: 8px solid #ddd;
-      border-top: 8px solid red;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    #app {
-      display: none;
-      padding: 20px;
-    }
-  </style>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
+  <!-- Loading Spinner -->
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
 
-<div id="loading">
-  <div class="spinner"></div>
-</div>
+  <!-- Main App -->
+  <div id="app" style="display:none;">
+    <h1>🎰 Red Lucky 777</h1>
+    <div class="section">
+      <p id="welcome"></p>
+      <p>Balance: <span id="balance">0.00 Red</span></p>
+      <p id="claimTimer"></p>
+    </div>
 
-<div id="app">
-  <h1>🎰 Welcome to Red Lucky 777</h1>
-  <p>Balance: <span id="balance">0.00 Red</span></p>
+    <!-- Fruit Animation -->
+    <div class="fruits">
+      <span class="fruit">🍒</span>
+      <span class="fruit">🍋</span>
+      <span class="fruit">🍇</span>
+      <span class="fruit">7️⃣</span>
+    </div>
 
-  <button onclick="spinWheel(0.1)">Spin (Red 0.1)</button>
-  <button onclick="claimBonus()">Claim Daily Bonus</button>
-  <p id="claimTimer"></p>
+    <!-- Spin Section -->
+    <div class="section">
+      <label for="bet">Bet Amount:</label>
+      <select id="bet">
+        <option value="0.1">0.1</option>
+        <option value="0.2">0.2</option>
+        <option value="0.3">0.3</option>
+        <option value="0.5">0.5</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="80">80</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="500">500</option>
+      </select>
+      <button onclick="spin()">Spin</button>
+    </div>
 
-  <div class="fruit" style="margin-top: 20px;">🍒 🍋 🍊</div>
-</div>
+    <!-- Actions -->
+    <div class="actions">
+      <button onclick="claimBonus()">Claim Bonus (24h)</button>
+      <a href="https://t.me/asifpin" class="button">Support @asifpin</a>
+    </div>
+  </div>
 
-<script src="script.js"></script>
-<script>
-  // 5-second spinner before showing app
-  setTimeout(() => {
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("app").style.display = "block";
-  }, 5000);
-</script>
-
+  <script src="script.js"></script>
+  <script>
+    // Show loading for 5s, then main app
+    setTimeout(() => {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+    }, 5000);
+  </script>
 </body>
 </html>
