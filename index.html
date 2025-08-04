@@ -2,81 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Red Lucky 777</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background: skyblue;
-    }
-
-    .loader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(to top, #87cefa, #ffffff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .storm {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 5px dashed white;
-      animation: spinStorm 2s linear infinite;
-    }
-
-    @keyframes spinStorm {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .content {
-      display: none;
-      height: 100%;
-      background-image: url("Lucid_Origin_A_serene_and_vibrant_depiction_of_tropical_island_1.jpg");
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-      color: white;
-      padding-top: 100px;
-    }
-
-    .content h1 {
-      font-size: 3em;
-      background: rgba(0,0,0,0.5);
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <div class="loader">
-    <div class="storm"></div>
+  <div id="loading">
+    <h2>🔁 Loading Red Lucky 777...</h2>
+    <div class="spinner"></div>
   </div>
 
-  <div class="content">
-    <h1>🌴 Welcome to Red Lucky 777</h1>
-    <p>Play & Spin to Earn Token Red!</p>
+  <div class="app" style="display: none;">
+    <h1>🎰 Red Lucky 777</h1>
+    <p>Balance: <span id="balance">Red 1.0</span></p>
+
+    <div class="reel">
+      <img id="fruit" src="images/fruit1.png" alt="fruit" />
+    </div>
+
+    <div>
+      <button onclick="spin()">🎯 Spin (Red 0.1)</button>
+    </div>
+
+    <p id="result"></p>
   </div>
 
-  <script>
-    // Show loader, then show app
-    window.onload = function() {
-      setTimeout(() => {
-        document.querySelector(".loader").style.display = "none";
-        document.querySelector(".content").style.display = "block";
-      }, 5000); // 5 seconds
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
