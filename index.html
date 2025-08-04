@@ -2,31 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Red Lucky 777</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="loading">
-    <h2>🔁 Loading Red Lucky 777...</h2>
-    <div class="spinner"></div>
-  </div>
-
-  <div class="app" style="display: none;">
-    <h1>🎰 Red Lucky 777</h1>
-    <p>Balance: <span id="balance">Red 1.0</span></p>
-
-    <div class="reel">
-      <img id="fruit" src="images/fruit1.png" alt="fruit" />
+  <div class="background">
+    <div class="overlay"></div>
+    <div class="menu-container">
+      <h1 class="game-title">🎰 Red Lucky 777</h1>
+      <div class="menu-grid">
+        <button class="menu-button">▶️ Play Game</button>
+        <button class="menu-button">🎰 Slots</button>
+        <button class="menu-button">💰 Balance</button>
+        <button class="menu-button">➕ Deposit</button>
+        <button class="menu-button">➖ Withdraw</button>
+        <button class="menu-button">👨‍💼 Customer Service</button>
+        <button class="menu-button">ℹ️ Info</button>
+      </div>
     </div>
-
-    <div>
-      <button onclick="spin()">🎯 Spin (Red 0.1)</button>
-    </div>
-
-    <p id="result"></p>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
